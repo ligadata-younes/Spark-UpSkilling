@@ -1,0 +1,73 @@
+version: '3'
+services:
+
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark_master
+    ports:
+      - "7077:7077" 
+      - "4040:4040" #UI
+    volumes:
+      - ./spark_jobs/:/opt/bitnami/spark/jobs/
+      - ./data/:/opt/bitnami/spark/data/
+    environment:
+      SPARK_MODE: master
+    networks:
+      - spark_net
+
+  spark_worker0:
+    image: bitnami/spark:latest
+    container_name: spark_worker0
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+    volumes:
+      - ./spark_jobs/:/opt/bitnami/spark/jobs/
+      - ./data/:/opt/bitnami/spark/data/
+    networks:
+      - spark_net
+
+  spark_worker1:
+    image: bitnami/spark:latest
+    container_name: spark_worker1
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+    volumes:
+      - ./spark_jobs/:/opt/bitnami/spark/jobs/
+      - ./data/:/opt/bitnami/spark/data/
+    networks:
+      - spark_net
+
+  spark_worker2:
+    image: bitnami/spark:latest
+    container_name: spark_worker2
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+    volumes:
+      - ./spark_jobs/:/opt/bitnami/spark/jobs/
+      - ./data/:/opt/bitnami/spark/data/
+    networks:
+      - spark_net
+
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    networks:
+      - spark_net
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      SPARK_MASTER_URL: spark://spark-master:7077
+
+networks:
+  spark_net:
