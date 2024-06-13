@@ -96,6 +96,28 @@ To stop and remove all the containers, run:
 docker-compose down
 ```
 
+## Assignment
+
+1. **Download Docker**:
+   - If you don't already have Docker installed, download and install it from [here](https://www.docker.com/get-started).
+
+2. **Run the Docker Compose File**:
+   - Use the provided `docker-compose.yml` file to set up and run the Spark cluster and Jupyter Notebook server.
+
+3. **Connect to a Database**:
+   - Connect to any database (e.g., MySQL, PostgreSQL) from your Jupyter notebook. You can use the `pyspark.sql` library to establish the connection.
+
+4. **Read Data**:
+   - Read data from the connected database into a Spark DataFrame.
+
+5. **Apply a Simple Transformation**:
+   - Perform a simple transformation on the DataFrame, such as filtering, aggregation, or any other basic operation.
+
+6. **Write the Result to Local Machine**:
+   - Write the transformed data to your local machine as a CSV file. Save it in the `./data/` directory.
+
+If you face any problems, please ping me, and I'll help.
+
 ## Notes
 
 - Ensure that the directories `./data/`, `./notebooks/`, and `./spark_jobs/` exist and have the necessary permissions.
@@ -115,3 +137,4 @@ This project is licensed under the MIT License.
 To use this `README.md` file:
 1. Save it in the root of your project directory (where your `docker-compose.yml` is located).
 2. Follow the instructions provided in the README to set up and run your Docker Compose environment.
+3. Complete the assignment tasks as specified.
