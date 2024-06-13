@@ -1,4 +1,3 @@
-```markdown
 # Spark and Jupyter Docker Compose Setup
 
 This repository provides a Docker Compose configuration to set up an Apache Spark cluster with a Jupyter Notebook for running PySpark jobs.
